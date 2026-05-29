@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fascias & Techniques Manuelles — E-learning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"/>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+.hero {
+  background: var(--ink);
+  color: #fff;
+  min-height: 88vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 80px 32px;
+}
+.hero::before {
+  content:'';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 25% 30%, #2d2218 0%, #1a1612 70%);
+}
+.hero-inner {
+  position: relative;
+  max-width: 1100px; margin: 0 auto;
+  width: 100%;
+  display: grid; grid-template-columns: 1.3fr 1fr;
+  gap: 80px; align-items: center;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.25em;
+  color: var(--gold); text-transform: uppercase;
+  border: 1px solid var(--gold); border-radius: 2px;
+  padding: 7px 16px; display: inline-block;
+  margin-bottom: 32px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  font-weight: 900; line-height: 1.05;
+  color: #fff;
+}
+.hero h1 em { color: var(--gold); font-style: italic; }
+.hero p.lede {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.65);
+  margin-top: 28px; max-width: 520px;
+  line-height: 1.65; font-weight: 300;
+}
+.hero-cta {
+  display: flex; gap: 14px;
+  margin-top: 40px;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.85);
+  transition: all 0.2s;
+}
+.btn:hover { border-color: var(--gold); color: var(--gold); }
+.btn.primary {
+  background: var(--gold); border-color: var(--gold); color: #fff;
+}
+.btn.primary:hover { background: #d49d22; border-color: #d49d22; color: #fff; }
+
+/* progress card right side */
+.hero-progress {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 32px;
+}
+.hp-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.hp-pct {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem; font-weight: 900;
+  color: #fff; line-height: 1;
+}
+.hp-pct .pct-sign {
+  font-size: 2rem; color: var(--gold);
+  margin-left: 4px;
+}
+.hp-bar {
+  height: 4px; background: rgba(255,255,255,0.1);
+  border-radius: 2px; margin-top: 18px;
+  overflow: hidden;
+}
+.hp-bar-fill {
+  height: 100%; background: var(--gold);
+  width: 0%; transition: width 0.6s;
+}
+.hp-modules {
+  display: flex; flex-direction: column;
+  gap: 10px; margin-top: 24px;
+  font-size: 0.88rem;
+}
+.hp-module {
+  display: flex; justify-content: space-between;
+  color: rgba(255,255,255,0.55);
+}
+.hp-module .mp-pct {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem; color: var(--gold);
+}
+
+/* MODULES SECTION */
+.modules-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 32px;
+}
+.section-eye {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.22em;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-h {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  font-weight: 900; line-height: 1.15;
+  color: var(--ink); max-width: 700px;
+}
+.section-h em { color: var(--muted); font-style: italic; }
+.section-p {
+  font-size: 1.1rem; color: var(--muted);
+  margin-top: 18px; max-width: 640px;
+  line-height: 1.7; font-weight: 300;
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+.module-card {
+  position: relative;
+  display: block;
+  background: #fff;
+  border: 1px solid var(--divider);
+  border-radius: 12px;
+  padding: 36px 36px 30px;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; height: 3px; width: 0%;
+  background: var(--gold);
+  transition: width 0.4s;
+}
+.module-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.06); border-color: var(--ink); }
+.module-card:hover::before { width: 100%; }
+.mc-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.22em;
+  color: var(--gold); text-transform: uppercase;
+}
+.mc-num .mc-pill {
+  display: inline-block; margin-left: 8px;
+  font-size: 0.62rem; letter-spacing: 0.1em;
+  background: var(--warm); color: var(--muted);
+  padding: 3px 8px; border-radius: 100px;
+}
+.mc-num .mc-pill.done { background: var(--green-light); color: var(--green); }
+.mc-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem; font-weight: 900;
+  color: var(--ink); margin: 18px 0 12px;
+  line-height: 1.18;
+}
+.mc-title em { color: var(--muted); font-style: italic; }
+.mc-desc {
+  font-size: 0.98rem; color: var(--muted);
+  line-height: 1.65; margin-bottom: 24px;
+  font-weight: 300;
+}
+.mc-meta {
+  display: flex; gap: 22px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.12em;
+  color: var(--light); text-transform: uppercase;
+  border-top: 1px solid var(--divider);
+  padding-top: 18px;
+}
+.mc-meta .mc-prog-bar {
+  flex: 1; height: 2px; background: var(--divider);
+  align-self: center; border-radius: 1px; overflow: hidden;
+}
+.mc-meta .mc-prog-bar span {
+  display: block; height: 100%;
+  background: var(--gold); width: 0%;
+  transition: width 0.6s;
+}
+
+/* INFO STRIP */
+.info-strip {
+  background: var(--warm);
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+  padding: 60px 32px;
+}
+.info-strip-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+.info-stat .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem; font-weight: 900;
+  color: var(--ink); line-height: 1;
+}
+.info-stat .unit {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.15em;
+  color: var(--gold); display: block;
+  margin: 8px 0 4px;
+}
+.info-stat .desc {
+  font-size: 0.88rem; color: var(--muted);
+  line-height: 1.55;
+}
+
+@media (max-width: 880px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 50px; }
+  .module-grid { grid-template-columns: 1fr; }
+  .info-strip-inner { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+}
+</style>
+</head>
+<body data-page="home">
+
+<nav class="topbar">
+  <a href="index.html" class="topbar-brand">Fascias <em>&amp; Techniques</em></a>
+  <span class="topbar-crumb">Evidence-Based Practice · 2025</span>
+  <span class="topbar-spacer"></span>
+  <a href="#modules" class="topbar-link">Modules</a>
+  <a href="bibliographie.html" class="topbar-link">Références</a>
+  <a href="atlas.html" class="topbar-link" style="background:var(--gold);color:var(--ink);padding:6px 14px;border-radius:999px;">✦ Édition Atlas</a>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">E-learning · 4 modules</div>
+      <h1>Fascias &amp;<br/>Techniques<br/><em>Manuelles</em></h1>
+      <p class="lede">Une formation interactive Evidence-Based : anatomie systémique, physiologie sensorielle, techniques cliniques validées et pédagogie pour praticiens.</p>
+      <div class="hero-cta">
+        <a href="module-1.html" class="btn primary">Commencer le Module I →</a>
+        <a href="#modules" class="btn">Voir les modules</a>
+      </div>
+    </div>
+    <aside class="hero-progress">
+      <div class="hp-label">Votre progression globale</div>
+      <div class="hp-pct"><span data-global-pct>0</span><span class="pct-sign">%</span></div>
+      <div class="hp-bar"><div class="hp-bar-fill" data-global-fill></div></div>
+      <div class="hp-modules">
+        <div class="hp-module"><span>Module I — Nouveau Monde</span><span class="mp-pct" data-mp="m1">0%</span></div>
+        <div class="hp-module"><span>Module II — Sensation</span><span class="mp-pct" data-mp="m2">0%</span></div>
+        <div class="hp-module"><span>Module III — Techniques</span><span class="mp-pct" data-mp="m3">0%</span></div>
+        <div class="hp-module"><span>Module IV — Pédagogie</span><span class="mp-pct" data-mp="m4">0%</span></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ══════ INFO STRIP ══════ -->
+<section class="info-strip">
+  <div class="info-strip-inner">
+    <div class="info-stat">
+      <div class="num">22</div>
+      <span class="unit">Leçons</span>
+      <div class="desc">réparties en 4 modules thématiques progressifs</div>
+    </div>
+    <div class="info-stat">
+      <div class="num">~6h</div>
+      <span class="unit">Durée totale</span>
+      <div class="desc">en parcours autonome, à votre rythme</div>
+    </div>
+    <div class="info-stat">
+      <div class="num">35+</div>
+      <span class="unit">Études citées</span>
+      <div class="desc">RCT, méta-analyses et revues systématiques</div>
+    </div>
+    <div class="info-stat">
+      <div class="num">6</div>
+      <span class="unit">Techniques</span>
+      <div class="desc">manuelles fasciales documentées et comparées</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ MODULES ══════ -->
+<section class="modules-section" id="modules">
+  <div class="section-eye">Parcours · 4 modules</div>
+  <h2 class="section-h">Une progression structurée<br/><em>de l'anatomie à la clinique</em></h2>
+  <p class="section-p">Chaque module est composé de leçons courtes que vous pouvez compléter à votre rythme. Marquez vos lectures, suivez votre progression et passez au module suivant.</p>
+
+  <div class="module-grid">
+
+    <a class="module-card" href="module-1.html" data-mod-card="m1">
+      <div class="mc-num">Module I <span class="mc-pill" data-mp-pill="m1">Non commencé</span></div>
+      <h3 class="mc-title">Le Fascia —<br/><em>Un Nouveau Monde</em></h3>
+      <p class="mc-desc">Anatomie systémique du tissu conjonctif, histologie de la matrice extracellulaire, biomécanique et tensegrité. Les fondations indispensables.</p>
+      <div class="mc-meta">
+        <span>3 sections · 6 leçons</span>
+        <div class="mc-prog-bar"><span data-mp-bar="m1"></span></div>
+        <span>~95 min</span>
+      </div>
+    </a>
+
+    <a class="module-card" href="module-2.html" data-mod-card="m2">
+      <div class="mc-num">Module II <span class="mc-pill" data-mp-pill="m2">Non commencé</span></div>
+      <h3 class="mc-title">Physiologie du<br/><em>Mouvement &amp; de la Sensation</em></h3>
+      <p class="mc-desc">Acide hyaluronique et glissement fascial, mécanorécepteurs, douleur myofasciale. Comprendre les cibles thérapeutiques.</p>
+      <div class="mc-meta">
+        <span>2 sections · 5 leçons</span>
+        <div class="mc-prog-bar"><span data-mp-bar="m2"></span></div>
+        <span>~75 min</span>
+      </div>
+    </a>
+
+    <a class="module-card" href="module-3.html" data-mod-card="m3">
+      <div class="mc-num">Module III <span class="mc-pill" data-mp-pill="m3">Non commencé</span></div>
+      <h3 class="mc-title">Techniques<br/><em>Manuelles &amp; Preuves</em></h3>
+      <p class="mc-desc">MFR, Stecco, Rolfing, OMT, CTM : six approches fasciales décortiquées avec leurs RCT, méta-analyses et indications cliniques.</p>
+      <div class="mc-meta">
+        <span>1 section · 7 leçons</span>
+        <div class="mc-prog-bar"><span data-mp-bar="m3"></span></div>
+        <span>~140 min</span>
+      </div>
+    </a>
+
+    <a class="module-card" href="module-4.html" data-mod-card="m4">
+      <div class="mc-num">Module IV <span class="mc-pill" data-mp-pill="m4">Non commencé</span></div>
+      <h3 class="mc-title">Conception<br/><em>E-learning EBP</em></h3>
+      <p class="mc-desc">Les 5 piliers d'une formation pédagogique de niveau professionnel : audience, micro-learning, multimodalité, évaluation, monétisation.</p>
+      <div class="mc-meta">
+        <span>1 section · 4 leçons</span>
+        <div class="mc-prog-bar"><span data-mp-bar="m4"></span></div>
+        <span>~50 min</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  Fascias &amp; Techniques Manuelles — Evidence-Based · Nico Ostéopathe Narbonne · 2025
+</footer>
+
+<script>
+(function () {
+  let state = {};
+  try { state = JSON.parse(localStorage.getItem('fascia-elearning-progress') || '{}'); } catch {}
+  const modules = state.modules || {};
+  const ids = ['m1','m2','m3','m4'];
+  let total = 0;
+  ids.forEach(id => {
+    const pct = modules[id] || 0;
+    total += pct;
+    const txt = document.querySelector(`[data-mp="${id}"]`);
+    if (txt) txt.textContent = pct + '%';
+    const bar = document.querySelector(`[data-mp-bar="${id}"]`);
+    if (bar) bar.style.width = pct + '%';
+    const pill = document.querySelector(`[data-mp-pill="${id}"]`);
+    if (pill) {
+      if (pct === 100) { pill.textContent = 'Terminé'; pill.classList.add('done'); }
+      else if (pct > 0) pill.textContent = `${pct}% lu`;
+    }
+  });
+  const global = Math.round(total / ids.length);
+  const pctEl = document.querySelector('[data-global-pct]');
+  if (pctEl) pctEl.textContent = global;
+  const fill = document.querySelector('[data-global-fill]');
+  if (fill) setTimeout(() => { fill.style.width = global + '%'; }, 100);
+})();
+</script>
+</body>
+</html>
